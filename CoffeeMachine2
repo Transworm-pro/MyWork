@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class CoffeeMachine2 {
+    public static void main (String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Write how many ml of water the coffee machine has:");
+        int water = sc.nextInt();
+        System.out.println("Write how many ml of milk the coffee machine has:");
+        int milk = sc.nextInt();
+        System.out.println("Write how many grams of coffee beans the coffee machine has:");
+        int gramsOfCoffee = sc.nextInt();
+        System.out.println("Write how many cups of coffee you will need:");
+        int cupsOfCoffee = sc.nextInt();
+
+        int minWater = water / 200;
+        int minMilk = milk / 50;
+        int minGramsOfCoffee = gramsOfCoffee / 15;
+        int[] minCups = new int[] {minWater, minMilk, minGramsOfCoffee};
+        int minValue = minCups[0];
+        for(int i = 1; i < minCups.length; i++)
+            if(minCups[i] < minValue)
+                minValue = minCups[i];
+
+        if (cupsOfCoffee == minValue)
+        {
+            System.out.println("Yes, I can make that amount of coffee");
+        }
+        else if(cupsOfCoffee < minValue)
+        {
+            System.out.println("Yes, I can make that amount of coffee (and even " + (minValue - cupsOfCoffee) + " more than that)");
+        }
+        else if(cupsOfCoffee > minValue)
+        {
+            System.out.println("No, I can make only " + minValue + " cup(s) of coffee");
+        }
+
+        else if (minValue == 0)
+        {
+            System.out.println("No, I can make only 0 cup(s) of coffee");
+        }
+    }
+}
